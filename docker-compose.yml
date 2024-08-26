@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres
+    container_name: postgres-webscraping
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-teste}
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-12345678}
+      POSTGRES_HOST: ${POSTGRES_HOST:-0.0.0.0}
+    ports:
+      - "5432:5432"
+  rails:
+    build:
+      context: ./rails
+      dockerfile: Dockerfile
+    container_name: rails-webscraping
+    restart: always
+    volumes:
+      - ./rails:/rails
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-teste}
+      POSTGRES_USER: ${POSTGRES_USER:-user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-12345678}
+      POSTGRES_HOST: ${POSTGRES_HOST:-host.docker.internal}
+    networks:
+      - rails-webscraping
+
+networks:
+  rails-webscraping:
+    driver: bridge
