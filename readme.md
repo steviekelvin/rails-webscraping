@@ -1,25 +1,26 @@
 # Web scraping com rails, postgres e docker
 
-## Dependencias
+## Dependencias para uso
 
-- O Docker precisa estar instalado e rodando em sua maquina
+- Docker
 
 ## Instalações
 
-- Rode o comando abaixo garantindo que seu sistema vai iniciar com todas as instalações
-
-  ```bash
-      docker compose up --build
-  ```
-
-- Sua aplicação estará rodando em:
+  - Clone o projeto em sua maquina
+  - Copie o .env-example para .env na raiz do projeto
+  - Levante o projeto com o comando `Docker compose up`
+  - Importe o modelo insomnia disponível na raiz do projeto
+  
+Sua aplicação estará rodando em:
 
   ```bash
   http://localhost:3000
   ```
 
-- Rotas disponiveis:
+Rotas disponiveis:
 
   ```bash
     http://localhost:3000/info
   ```
+
+![alt text](.exemplos/image.png)
